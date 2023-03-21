@@ -1,9 +1,17 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
+
+// HANDLER FUNCTION FOR INITIAL PAGE
+app.get("/", function (request, response) {
+  //   const searchQuery = request.query.search;
+  response.send(
+    `<h1>Hello Andriana, you are using node to send requests to Postman</h1>`
+  );
+});
 
 // HANDLER FUNCTION FOR SEARCH WORDS
-app.get("/", function (request, response) {
+app.get("/search", function (request, response) {
   const searchQuery = request.query.search;
   response.send(
     `Hello Andriana, you are using node to send requests to ${searchQuery}`
@@ -28,6 +36,6 @@ app.get("/chocolate", function (req, res) {
   res.send(`Send me ${amount} chocolates`);
 });
 
-app.listen(port, function () {
-  console.log(`Server is listening on port ${port}. Ready to accept requests.`);
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}. Ready to accept requests.`);
 });
